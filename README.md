@@ -6,12 +6,13 @@
 
 > Monitor websites for new job postings
 
-## Getting Started
+## Getting started
 
 ### Installation
 
 ```sh
-yarn && yarn start
+yarn global add wt-cli
+yarn && yarn dev
 ```
 
 ## Scripts
@@ -35,3 +36,25 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 Runs the tests using [Jest](https://facebook.github.io/jest/).<br>
 Code coverage report will also be included in command line output.
+
+## Webtask management
+
+```sh
+wt create ./webtask.js --name job-alerts-webtask
+wt edit job-alerts-webtask
+wt update job-alerts-webtask ./webtask.js
+```
+
+### Real-time logging
+
+```sh
+wt logs -v
+```
+
+### Production scheduling
+
+```sh
+wt cron create --name job-alerts-webtask --secret JOB_ALERTS_AUTH_TOKEN=$JOB_ALERTS_AUTH_TOKEN --secret JOB_ALERTS_ENDPOINT=$JOB_ALERTS_ENDPOINT --schedule "0 18 * * *" --tz "America/Chicago" ./webtask.js
+```
+
+> Every day at 18:00.

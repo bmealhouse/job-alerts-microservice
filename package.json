@@ -9,8 +9,14 @@
   "scripts": {
     "deploy": "",
     "precommit": "lint-staged",
-    "prepush": "xo",
-    "start": "node index.js"
+    "prepush": "xo && yarn test",
+    "start": "node index.js",
+    "test": "jest"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "testEnvironment": "node",
+    "verbose": true
   },
   "lint-staged": {
     "*.js": [
@@ -43,6 +49,9 @@
     ]
   },
   "xo": {
+    "envs": [
+      "jest"
+    ],
     "prettier": true,
     "rules": {
       "capitalized-comments": "off",
@@ -60,11 +69,15 @@
     "esm": "3.0.82",
     "graphql-request": "1.8.2",
     "mjml": "4.1.2",
+    "node-fetch": "2.2.0",
     "now-env": "3.1.0",
     "puppeteer": "1.7.0"
   },
   "devDependencies": {
+    "husky": "0.14.3",
+    "jest": "23.5.0",
     "lint-staged": "7.2.2",
+    "nock": "9.6.1",
     "prettier": "1.14.2",
     "xo": "0.22.0"
   }
