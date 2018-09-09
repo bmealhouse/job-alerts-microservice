@@ -1,26 +1,30 @@
-import {GraphQLClient} from 'graphql-request'
+const {GraphQLClient} = require('graphql-request')
 
 const client = new GraphQLClient(process.env.PRISMA_SERVER_ENDPOINT)
 
-export default {
-  async read() {
-    const {jobs} = await client.request(`
-      {
-        jobs {
-          href
-        }
-      }
-    `)
-
+module.exports = {
+  async readJobs() {
+    const {jobs} = await client.request(readJobsQuery())
     return jobs
   },
-  async update(newJobs) {
-    const mutations = newJobs.map(createJob)
-    await client.request(createJobs(mutations))
+  async createJobs(newJobs) {
+    console.log('Adding new jobs to database...')
+    const mutations = newJobs.map(createJobMutation)
+    await client.request(createJobsQuery(mutations))
   },
 }
 
-function createJobs(mutations) {
+function readJobsQuery() {
+  return `
+  {
+    jobs {
+      href
+    }
+  }
+  `
+}
+
+function createJobsQuery(mutations) {
   return `
   mutation createJobs {
     ${mutations.join('\n')}
@@ -28,7 +32,7 @@ function createJobs(mutations) {
   `
 }
 
-function createJob({company, title, location, href}) {
+function createJobMutation({company, title, location, href}) {
   const alias = `alias_${Math.random()
     .toString(36)
     .slice(2)}`

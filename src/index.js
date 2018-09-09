@@ -1,32 +1,21 @@
-import puppeteer from 'puppeteer'
-import scrapeJobs from './scrape-jobs'
-import db from './db'
-import sendJobAlert from './send-job-alert'
-import bostonScientific from './boston-scientific'
-import medtronic from './medtronic'
+const {send} = require('micro')
+const validateRequest = require('./utils/validate-request')
+const findJobs = require('./utils/find-jobs')
+const compare = require('./utils/compare')
+const sendEmailNotification = require('./utils/send-email-notification')
+const middleware = require('./middleware')
+const db = require('./db')
 
-const main = async () => {
-  const browser = await puppeteer.launch()
+module.exports = middleware(async (req, res) => {
+  validateRequest(req)
 
-  try {
-    const page = await browser.newPage()
-    const bostonScientificJobs = await scrapeJobs(bostonScientific(page))
-    const medtronicJobs = await scrapeJobs(medtronic(page))
-    const jobs = [...bostonScientificJobs, ...medtronicJobs]
+  const jobs = await findJobs()
+  const newJobs = await compare(jobs, await db.readJobs())
 
-    const databaseJobs = await db.read()
-    const jobsMap = new Map(jobs.map(job => [job.href, job]))
-    databaseJobs.forEach(({href}) => jobsMap.delete(href))
-    if (jobsMap.size === 0) return
-
-    const newJobs = [...jobsMap.values()]
-    await sendJobAlert(newJobs)
-    // await db.update(newJobs)
-  } catch (err) {
-    console.log(err.toString())
-  } finally {
-    await browser.close()
+  if (newJobs.length > 0) {
+    await sendEmailNotification(newJobs)
+    await db.createJobs(newJobs)
   }
-}
 
-main()
+  send(res, 204)
+})

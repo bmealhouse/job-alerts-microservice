@@ -7,10 +7,11 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "deploy": "",
+    "deploy": "now --no-verify",
+    "dev": "micro-dev",
     "precommit": "lint-staged",
     "prepush": "xo && yarn test",
-    "start": "node index.js",
+    "start": "micro",
     "test": "jest"
   },
   "jest": {
@@ -26,12 +27,22 @@
     ]
   },
   "now": {
+    "type": "docker",
+    "features": {
+      "cloud": "v2"
+    },
     "env": {
       "NODE_ENV": "production",
+      "JOB_ALERTS_AUTH_TOKEN": "@job-alerts-auth-token",
+      "JOB_ALERTS_SENTRY_DSN": "@job-alerts-sentry-dsn",
       "PRISMA_SERVER_ENDPOINT": "@prisma-server-endpoint",
       "SENDGRID_API_KEY": "@webtask-sendgrid-api-key",
-      "SENDGRID_TO": "bmealhouse@gmail.com"
-    }
+      "SENDGRID_TO": "tmealhouse@gmail.com,bmealhouse@gmail.com"
+    },
+    "limits": {
+      "maxConcurrentReqs": 1
+    },
+    "slot": "c1-m4096"
   },
   "prettier": {
     "useTabs": false,
@@ -66,8 +77,11 @@
   },
   "dependencies": {
     "@sendgrid/mail": "6.3.1",
-    "esm": "3.0.82",
     "graphql-request": "1.8.2",
+    "micro": "9.3.3",
+    "micro-cors": "0.1.0",
+    "micro-post": "1.0.0",
+    "micro-sentry": "1.2.0",
     "mjml": "4.1.2",
     "node-fetch": "2.2.0",
     "now-env": "3.1.0",
@@ -77,6 +91,7 @@
     "husky": "0.14.3",
     "jest": "23.5.0",
     "lint-staged": "7.2.2",
+    "micro-dev": "3.0.0",
     "nock": "9.6.1",
     "prettier": "1.14.2",
     "xo": "0.22.0"

@@ -1,10 +1,11 @@
-import sendgrid from '@sendgrid/mail'
-import mjml2html from 'mjml'
+const sendgrid = require('@sendgrid/mail')
+const mjml2html = require('mjml')
+const quotes = require('./ron-burgundy-quotes')
 
 sendgrid.setApiKey(process.env.SENDGRID_API_KEY)
 
-export default async newJobs => {
-  console.log('Sending email...')
+module.exports = async newJobs => {
+  console.log('Sending email notification...')
 
   const data = newJobs.reduce((newJobsMap, job) => {
     const aggregatedJobs = newJobsMap[job.company] || []
@@ -26,6 +27,8 @@ export default async newJobs => {
 }
 
 function generateHtml(data) {
+  const quote = quotes[Math.floor(Math.random() * quotes.length)]
+
   const jobDetailsMarkup = ({title, location, href}) => `
     <mj-section padding="7px 0 0 0" border-bottom="1px solid #ecedee">
       <mj-column>
@@ -52,6 +55,9 @@ function generateHtml(data) {
     <mj-section>
       <mj-column>
         <mj-text color="#ff4136" font-size="40px" font-weight="900" align="left">Job alert!</mj-text>
+        <mj-text color="#666" font-size="12px" font-style="italic">&ldquo; ${quote} &rdquo;</mj-text>
+        <mj-text color="#333" padding-top="0">&mdash;Ron Burgundy</mj-text>
+      </mj-column>
       </mj-column>
     </mj-section>
     ${jobSectionsMarkup.join('')}

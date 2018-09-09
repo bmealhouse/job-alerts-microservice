@@ -17,11 +17,6 @@ yarn && yarn dev
 
 ## Scripts
 
-### `yarn deploy`
-
-Deploys the service to [now](https://zeit.co/now).<br>
-The deployment is also aliased to the production URL.
-
 ### `yarn dev`
 
 Runs the service in development using [micro-dev](https://github.com/zeit/micro-dev).<br>

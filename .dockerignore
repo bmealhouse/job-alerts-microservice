@@ -1,0 +1,6 @@
+*
+!src/
+!index.js
+!start.sh
+!package.json
+!yarn.lock

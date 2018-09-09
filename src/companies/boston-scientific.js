@@ -1,6 +1,10 @@
-import {searchUrl, lastPageSelector, jobDetailsSelector} from './constants'
+const searchUrl =
+  'https://jobs.bostonscientific.com/search/?q=Engineer&locationsearch=MN'
 
-export default page => ({
+const lastPageSelector = '.pagination li:nth-last-child(2)'
+const jobDetailsSelector = '.jobdetail-phone'
+
+module.exports = page => ({
   async gotoFirstPage() {
     await page.goto(`${searchUrl}&startrow=0`)
   },
