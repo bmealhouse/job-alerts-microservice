@@ -1,0 +1,7 @@
+type Job {
+  id: ID! @unique
+  company: String!
+  href: String!
+  location: String!
+  title: String!
+}
