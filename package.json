@@ -7,7 +7,6 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "deploy": "now --no-verify",
     "dev": "micro-dev",
     "precommit": "lint-staged",
     "prepush": "xo && yarn test",
