@@ -65,9 +65,17 @@
   dependencies:
     "@types/node" "*"
 
+"@types/micro@^7.3.1":
+  version "7.3.1"
+  resolved "https://registry.yarnpkg.com/@types/micro/-/micro-7.3.1.tgz#d40a47b7ee680f7183f3052d36fa2ed7a118e2f9"
+
 "@types/node@*":
   version "10.7.0"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.7.0.tgz#d384b2c8625414ab2aa18fdf989c288d6a7a8202"
+
+"@types/node@^10.9.4":
+  version "10.9.4"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.9.4.tgz#0f4cb2dc7c1de6096055357f70179043c33e9897"
 
 "@types/request@^2.0.3":
   version "2.47.1"
@@ -3625,9 +3633,12 @@ micro-dev@3.0.0:
     pretty-error "2.1.1"
     string-length "2.0.0"
 
-micro-post@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/micro-post/-/micro-post-1.0.0.tgz#8c92caed6e241afe52c25a33bb6a0c245232d4c4"
+micro-post@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/micro-post/-/micro-post-2.0.0.tgz#521118b9ae0efe6a2da056da38aee6d46cf5b18f"
+  dependencies:
+    "@types/micro" "^7.3.1"
+    "@types/node" "^10.9.4"
 
 micro-sentry@1.2.0:
   version "1.2.0"
