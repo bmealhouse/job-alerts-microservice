@@ -1,4 +1,4 @@
-const searchUrl = 'https://jobs.medtronic.com/jobs/search/58052986'
+const searchUrl = 'https://jobs.medtronic.com/jobs/search/65204789'
 const lastPageSelector = '#jPaginationHldr a:nth-last-child(2)'
 const jobDetailsSelector = '.job_list_row'
 

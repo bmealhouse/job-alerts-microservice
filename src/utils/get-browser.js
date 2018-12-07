@@ -7,6 +7,10 @@ module.exports = (() => {
   return async () => {
     let unlock
 
+    if (process.env.NODE_ENV === 'development') {
+      return puppeteer.launch({headless: false})
+    }
+
     // eslint-disable-next-line no-unused-expressions
     launching && launching.then && (await launching)
 
