@@ -1,7 +1,7 @@
 const nock = require('nock')
 const webtask = require('./webtask')
 
-const JOB_ALERTS_ENDPOINT = 'https://wwwhillcitymnagchurch-qzzjpqsxyy.now.sh'
+const JOB_ALERTS_ENDPOINT = 'https://fakeendpoint-qzzjpqsxyy.now.sh'
 
 const getContext = () => ({
   secrets: {
