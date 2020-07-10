@@ -369,17 +369,9 @@
     "@types/istanbul-lib-coverage" "*"
     "@types/istanbul-lib-report" "*"
 
-"@types/micro@^7.3.1":
-  version "7.3.1"
-  resolved "https://registry.yarnpkg.com/@types/micro/-/micro-7.3.1.tgz#d40a47b7ee680f7183f3052d36fa2ed7a118e2f9"
-
 "@types/node@*":
   version "10.7.0"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.7.0.tgz#d384b2c8625414ab2aa18fdf989c288d6a7a8202"
-
-"@types/node@^10.9.4":
-  version "10.9.4"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.9.4.tgz#0f4cb2dc7c1de6096055357f70179043c33e9897"
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -4026,12 +4018,12 @@ micro-dev@3.0.0:
     pretty-error "2.1.1"
     string-length "2.0.0"
 
-micro-post@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/micro-post/-/micro-post-2.0.0.tgz#521118b9ae0efe6a2da056da38aee6d46cf5b18f"
+micro-post@2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/micro-post/-/micro-post-2.2.0.tgz#081d8358741fd76059d889087adcbf7133b0cf90"
+  integrity sha512-dS7FnLbLY8uOZkeaOXk9eaMJfKLWfhH+/BAhyQc+mod+DlRNkzi8Kb5shF7h3GMW+HlfQAF7UaU7/1fiFmqANg==
   dependencies:
-    "@types/micro" "^7.3.1"
-    "@types/node" "^10.9.4"
+    micro "^9.3.4"
 
 micro-sentry@1.2.0:
   version "1.2.0"
@@ -4041,7 +4033,7 @@ micro-sentry@1.2.0:
     micro "^8.0.3"
     raven "^2.1.2"
 
-micro@9.3.4:
+micro@9.3.4, micro@^9.3.4:
   version "9.3.4"
   resolved "https://registry.yarnpkg.com/micro/-/micro-9.3.4.tgz#745a494e53c8916f64fb6a729f8cbf2a506b35ad"
   dependencies:
